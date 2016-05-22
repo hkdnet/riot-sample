@@ -5,19 +5,13 @@
     handlers={ this.handlers } ></counter>
   <script>
   this.state = store;
-  this.handlers = {
-    onButtonUpClick: ()=> {
-      RiotControl.trigger('BUTTON_UP_CLICKED');
-    },
-    onButtonDownClick: ()=>{
-      RiotControl.trigger('BUTTON_DOWN_CLICKED');
-    }
-  };
-  RiotControl.on('BUTTON_UP_CLICKED', ()=> {
+  let f = require('../lib/HandlerFactory.js');
+  this.handlers = {};
+  this.handlers['onButtonUpClick'] = RiotControl.generateDispatcher('onButtonUpClick', ()=> {
     this.state.count += 1;
     RiotControl.trigger('STATE_CHANGE');
   });
-  RiotControl.on('BUTTON_DOWN_CLICKED', ()=> {
+  this.handlers['onButtonDownClick'] = RiotControl.generateDispatcher('onButtonDownClick', ()=> {
     this.state.count -= 1;
     RiotControl.trigger('STATE_CHANGE');
   });
