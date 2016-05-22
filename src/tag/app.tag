@@ -5,16 +5,17 @@
     handlers={ this.handlers } ></counter>
   <script>
   this.state = store;
-  let f = require('../lib/HandlerFactory.js');
-  this.handlers = {};
-  this.handlers['onButtonUpClick'] = RiotControl.generateDispatcher('onButtonUpClick', ()=> {
+  const DispatcherMaker = require('../lib/DispatcherMaker.js');
+  let maker = new DispatcherMaker(RiotControl);
+  maker.add('onButtonUpClick', ()=> {
     this.state.count += 1;
     RiotControl.trigger('STATE_CHANGE');
   });
-  this.handlers['onButtonDownClick'] = RiotControl.generateDispatcher('onButtonDownClick', ()=> {
+  maker.add('onButtonDownClick', ()=> {
     this.state.count -= 1;
     RiotControl.trigger('STATE_CHANGE');
   });
+  this.handlers = maker.make();
   store.on('STATE_CHANGE', ()=> {
     this.update();
   });

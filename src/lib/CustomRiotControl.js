@@ -1,5 +1,4 @@
 const OrignalRiotControl = require('riotcontrol');
-const reg = /([A-Z])/g;
 
 let _histories = [];
 
