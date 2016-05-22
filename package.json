@@ -1,0 +1,23 @@
+{
+  "name": "riot-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "build": "browserify -t riotify src/index.js -o public/js/bundle.js",
+    "watch": "watchify -t riotify src/index.js -o public/js/bundle.js -v",
+    "dev": "npm run watch & npm run start"
+  },
+  "author": "hkdnet",
+  "license": "ISC",
+  "devDependencies": {
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "express": "^4.13.4",
+    "riot": "^2.4.0",
+    "riotify": "^1.0.1",
+    "watchify": "^3.7.0"
+  }
+}
