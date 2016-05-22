@@ -8,11 +8,11 @@
   const DispatcherMaker = require('../lib/DispatcherMaker.js');
   let maker = new DispatcherMaker(RiotControl);
   maker.add('onButtonUpClick', ()=> {
-    this.state.count += 1;
+    this.state.countUp();
     RiotControl.trigger('STATE_CHANGE');
   });
   maker.add('onButtonDownClick', ()=> {
-    this.state.count -= 1;
+    this.state.countDown();
     RiotControl.trigger('STATE_CHANGE');
   });
   this.handlers = maker.make();
